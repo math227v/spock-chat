@@ -1,0 +1,31 @@
+services:
+  pocketbase:
+    image: registry.h.mtlr.dk/math227v/pocketbase
+    restart: unless-stopped
+    volumes:
+      - pocketbase:/pb/pb_data
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy-net
+      - traefik.http.routers.spock-pocketbase-router.rule=Host(`spock.homelab.mathiaslauridsen.dk`) && (PathPrefix(`/api`) || PathPrefix(`/_`))
+      - traefik.http.routers.spock-pocketbase-router.entrypoints=websecure
+      - traefik.http.routers.spock-pocketbase-router.service=spock-pocketbase-service
+      - traefik.http.routers.spock-pocketbase-router.tls=true
+      - traefik.http.routers.spock-pocketbase-router.tls.certresolver=cloudflare
+      - traefik.http.services.spock-pocketbase-service.loadBalancer.server.port=8080 # REPLACE PORT NUMBER
+      # - glance.name=spock-pocketbase
+      # - glance.hide=false
+      # - glance.id=spock-pocketbase
+      # - glance.icon=si:spock-pocketbase
+      # - glance.url=https://spock-pocketbase.homelab.mathiaslauridsen.dk
+      # - glance.description=Movies & shows
+
+networks:
+  proxy:
+    name: proxy-net
+    external: true
+
+volumes:
+  pocketbase:
