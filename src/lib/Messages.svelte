@@ -3,6 +3,7 @@
 	import { currentuser, pb } from './pocketbase';
 	import { Avatar, Button, Heading, Input, P } from 'flowbite-svelte';
 	import type { ListResult, RecordModel } from 'pocketbase';
+	import { TrashBinSolid } from 'flowbite-svelte-icons';
 
 	let newMessage: string = '';
 	let messages: (RecordModel | undefined)[] = [];
@@ -42,6 +43,12 @@
 		const createdMessage = await pb.collection('messages').create(data);
 		newMessage = '';
 	}
+
+	async function deleteMessage(message: RecordModel | undefined) {
+		if (message?.id) {
+			await pb.collection('messages').delete(message.id);
+		}
+	}
 </script>
 
 <Heading tag="h1">Messages</Heading>
@@ -53,6 +60,11 @@
 				<P>{message?.text}</P>
 				<small>Sent by @{message?.expand?.user?.name}</small>
 			</div>
+			{#if message?.expand?.user?.id == $currentuser?.id}
+				<Button color="alternative" onclick={() => deleteMessage(message)}>
+					<TrashBinSolid />
+				</Button>
+			{/if}
 		</div>
 	{/each}
 </div>
