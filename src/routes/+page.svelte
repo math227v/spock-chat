@@ -1,6 +1,17 @@
 <script>
-	import Login from '$lib/Login.svelte';
+	import Messages from '$lib/Messages.svelte';
+	import { Heading, P } from 'flowbite-svelte';
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<section class="bg-primary-600">
+	<div class="container mx-auto p-8">
+		<Heading tag="h1" class="mb-2 text-center text-white">Spockchat!</Heading>
+		<Heading tag="h5" class="text-center text-white">Dette er en pocketbase app!</Heading>
+	</div>
+</section>
+
+<section>
+	<div class="container mx-auto p-8">
+		<Messages />
+	</div>
+</section>

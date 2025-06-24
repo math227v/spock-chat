@@ -1,9 +1,11 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import Login from '$lib/Login.svelte';
 	import '../app.css';
 
 	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
 
+	let activeUrl = $derived(page.url.pathname);
 	let { children } = $props();
 </script>
 
@@ -13,13 +15,8 @@
 			>Spock chat</span
 		>
 	</NavBrand>
-	<NavHamburger />
-	<NavUl>
+	<NavUl {activeUrl}>
 		<NavLi href="/">Home</NavLi>
-		<NavLi href="/about">About</NavLi>
-		<NavLi href="/docs/components/navbar">Navbar</NavLi>
-		<NavLi href="/pricing">Pricing</NavLi>
-		<NavLi href="/contact">Contact</NavLi>
 	</NavUl>
 
 	<div class="flex md:order-2">
@@ -27,6 +24,5 @@
 		<NavHamburger />
 	</div>
 </Navbar>
-<div class="container mx-auto">
-	{@render children()}
-</div>
+
+{@render children()}
