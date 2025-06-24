@@ -2,6 +2,7 @@ services:
   pocketbase:
     image: registry.h.mtlr.dk/math227v/pocketbase
     restart: unless-stopped
+    command: ['/pb/pocketbase',  'serve', '--http=0.0.0.0:8080']
     volumes:
       - pocketbase:/pb/pb_data
     networks:
