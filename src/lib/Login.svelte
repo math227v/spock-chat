@@ -1,5 +1,21 @@
 <script lang="ts">
-	import { Button, Input, Drawer, Label, P, Heading, Popover, Alert } from 'flowbite-svelte';
+	import {
+		Button,
+		Input,
+		Drawer,
+		Label,
+		P,
+		Heading,
+		Popover,
+		Alert,
+		A,
+		Avatar,
+		Dropdown,
+		DropdownHeader,
+		DropdownGroup,
+		Span,
+		DropdownItem
+	} from 'flowbite-svelte';
 	import { InfoCircleSolid } from 'flowbite-svelte-icons';
 	import { currentuser, pb } from './pocketbase';
 
@@ -118,10 +134,29 @@
 	</div>
 {:else}
 	<div class="flex flex-row items-center gap-4">
-		<P>Welcome, {$currentuser.name}</P>
+		<Avatar
+			class="cursor-pointer"
+			id="user-avatar"
+			src="https://api.dicebear.com/9.x/thumbs/svg?seed={$currentuser?.id}"
+		/>
+		<Dropdown triggeredBy="#user-avatar" triggerDelay={0} trigger="click">
+			<DropdownHeader>
+				@{$currentuser?.name}
+			</DropdownHeader>
+			<DropdownGroup>
+				<DropdownItem href="/profile">Profile</DropdownItem>
+				<DropdownItem id="logout-btn">Logout</DropdownItem>
+				<Popover trigger="click" triggeredBy="#logout-btn" triggerDelay={0} placement="bottom">
+					<Button onclick={signOut}>For real?</Button>
+				</Popover>
+			</DropdownGroup>
+		</Dropdown>
+	</div>
+	<!-- <div class="flex flex-row items-center gap-4">
+		<P>Welcome, <A href="/profile">{$currentuser.name}</A></P>
 		<Button>Logout</Button>
 		<Popover trigger="click" triggerDelay={0}>
 			<Button onclick={signOut}>For real?</Button>
 		</Popover>
-	</div>
+	</div> -->
 {/if}

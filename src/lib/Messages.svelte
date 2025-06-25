@@ -55,7 +55,7 @@
 <div class="my-4 flex max-h-96 flex-col gap-4 overflow-scroll rounded border-2 border-gray-300 p-2">
 	{#each messages as message (message?.id)}
 		<div class="flex flex-row items-center gap-2 rounded-xl border-2 border-gray-300 p-4">
-			<Avatar src="https://api.dicebear.com/9.x/thumbs/svg?seed={message?.expand?.user?.name}" />
+			<Avatar src="https://api.dicebear.com/9.x/thumbs/svg?seed={message?.expand?.user?.id}" />
 			<div class="flex flex-1 flex-col">
 				<P>{message?.text}</P>
 				<small>Sent by @{message?.expand?.user?.name}</small>

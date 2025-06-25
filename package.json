@@ -41,6 +41,7 @@
 		"vite-plugin-devtools-json": "^0.2.0"
 	},
 	"dependencies": {
-		"pocketbase": "^0.26.1"
+		"pocketbase": "^0.26.1",
+		"svelte-maplibre": "^1.0.0"
 	}
 }
