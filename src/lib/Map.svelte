@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
-	import { MapPinAltSolid } from 'flowbite-svelte-icons';
 	import { MapLibre, Marker, type MarkerClickInfo } from 'svelte-maplibre';
 	import { currentuser, pb } from './pocketbase';
-	import type { ListResult, RecordModel } from 'pocketbase';
+	import type { RecordModel } from 'pocketbase';
 	import { Avatar } from 'flowbite-svelte';
 
 	let userPos: { coords: [number, number]; accuracy: number } | undefined = $state(undefined);

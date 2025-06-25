@@ -2,7 +2,7 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { currentuser, pb } from './pocketbase';
 	import { Avatar, Button, Heading, Input, P } from 'flowbite-svelte';
-	import type { ListResult, RecordModel } from 'pocketbase';
+	import type { RecordModel } from 'pocketbase';
 	import { TrashBinSolid } from 'flowbite-svelte-icons';
 
 	let newMessage: string = '';

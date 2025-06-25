@@ -4,16 +4,13 @@
 		Input,
 		Drawer,
 		Label,
-		P,
 		Heading,
 		Popover,
 		Alert,
-		A,
 		Avatar,
 		Dropdown,
 		DropdownHeader,
 		DropdownGroup,
-		Span,
 		DropdownItem
 	} from 'flowbite-svelte';
 	import { InfoCircleSolid } from 'flowbite-svelte-icons';
