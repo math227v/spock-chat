@@ -3,7 +3,15 @@
 	import { MapLibre, Marker, type MarkerClickInfo } from 'svelte-maplibre';
 	import { currentuser, pb } from './pocketbase';
 	import type { RecordModel } from 'pocketbase';
-	import { Avatar } from 'flowbite-svelte';
+	import {
+		Avatar,
+		Dropdown,
+		DropdownGroup,
+		DropdownHeader,
+		DropdownItem,
+		Hr,
+		Popover
+	} from 'flowbite-svelte';
 
 	let userPos: { coords: [number, number]; accuracy: number } | undefined = $state(undefined);
 	let locationError: string | undefined = $state(undefined);
@@ -130,7 +138,19 @@
 	const startPosition: [number, number] = [11.0, 56.0];
 </script>
 
-<div class="relative min-h-full w-full md:h-full">
+<div class="mb-5 flex px-8">
+	{#if positions}
+		{#each positions as entry (entry?.id)}
+			<Avatar
+				stacked
+				src="https://api.dicebear.com/9.x/thumbs/svg?seed={entry?.expand?.user?.id}"
+				border={$currentuser?.id == entry?.expand?.user?.id}
+				class="ring-green-400"
+			/>
+		{/each}
+	{/if}
+</div>
+<div class="relative flex w-full flex-1">
 	<MapLibre
 		center={startPosition}
 		zoom={6}
@@ -153,6 +173,16 @@
 							border={$currentuser?.id == entry?.expand?.user?.id}
 							class="ring-green-400"
 						/>
+						<Dropdown>
+							<DropdownHeader>
+								@{entry?.expand?.user?.name}
+							</DropdownHeader>
+							<DropdownGroup>
+								<DropdownItem>Kick</DropdownItem>
+								<DropdownItem>Ban</DropdownItem>
+								<DropdownItem>Open up</DropdownItem>
+							</DropdownGroup>
+						</Dropdown>
 						<!-- <MapPinAltSolid class="-translate-y-1/2 cursor-pointer" size="xl" color="#ff9900" /> -->
 					</Marker>
 				{/if}

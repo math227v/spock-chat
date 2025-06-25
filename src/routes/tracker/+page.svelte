@@ -2,10 +2,10 @@
 	import Map from '$lib/Map.svelte';
 </script>
 
-<section>
-	<div class="container mx-auto p-8">
-        <div class="flex flex-1 md:h-screen">
-            <Map />
-        </div>
+<section class="h-full">
+	<div class="container mx-auto h-full md:p-4">
+		<div class="flex h-full flex-1 flex-col">
+			<Map />
+		</div>
 	</div>
 </section>

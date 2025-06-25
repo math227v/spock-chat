@@ -29,6 +29,7 @@
 		</NavBrand>
 		<NavUl {activeUrl}>
 			<NavLi href="/">Home</NavLi>
+			<NavLi href="/tracker">Map</NavLi>
 		</NavUl>
 
 		<div class="flex md:order-2">
